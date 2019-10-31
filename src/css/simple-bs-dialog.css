@@ -1,0 +1,17 @@
+.simple-bs-dialog .modal-dialog,
+.simple-bs-dialog .modal-content {
+  min-height: 200px;
+}
+
+.simple-bs-dialog .modal-body {
+  min-height: 80px;
+}
+
+.simple-bs-dialog .modal-spinner {
+  background: white;
+  z-index: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

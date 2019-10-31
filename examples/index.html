@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="../src/css/simple-bs-dialog.css" rel="stylesheet" type="text/css" />
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+<script src="../src/js/simple-bs-dialog.js"></script>
+<meta charset="utf-8" />
+<title>Simple Bootstrap Dialog Examples</title>
+<style>
+    .login-dialog .modal-header {
+        color: #0480be;
+    }
+</style>
+</head>
+<body style="padding-bottom: 100px;">
+<div class="container">
+    <h2>Make use of Bootstrap's 4 Modal in a more friendly way.</h2>
+    <hr />
+    
+    <h3>Full example</h3>
+    <p>Full functionality of SimpleBsDialog.</p>
+
+    <div class="source-code runnable">
+        <!--
+        SimpleBsDialog.show({
+            width: '900px',
+            autoWidth: false,
+            height: '30%',
+            autoHeight: true,
+            title: 'Simple Bootstrap 4 Dialog (v' + SimpleBsDialog.version + ')',
+            closable: true,
+            spinner: true,
+            spinnerIcon: '<span class="spinner-border text-primary" role="status"></span>',
+            closeByBackdrop: true,
+            closeByKeyboard: true,
+            html: '',
+            cssClass: 'login-dialog',
+            buttons: [{
+                    id: 'btn-ok',
+                    label: 'OK',
+                    cssClass: 'btn-primary',
+                    action: function(dialogRef) {
+                        console.log('OK button pressed!');
+                        dialogRef.close();
+                    },
+                }, {
+                    id: 'btn-cancel',
+                    label: 'Cancel',
+                    cssClass: 'btn-warning',
+                    action: function(dialogRef) {
+                        console.log('Cancel button pressed!');
+                        dialogRef.close();
+                    },
+                },
+            ],
+            onShow: function(dialogRef) {
+                console.log('onShow');
+
+                dialogRef.getButtons().prop('disabled', true);
+            },
+            onShown: function(dialogRef) {
+                console.log('onShown');
+
+                setTimeout(function() {
+                    dialogRef.set({
+                        'spinner': false,
+                    }).getModalBody().html('Your content goes here...');
+
+                    dialogRef.getButtons().prop('disabled', false);
+                }, 1000);
+            },
+            onHide: function(dialogRef) {
+                console.log('onHide');
+            },
+            onHidden: function(dialogRef) {
+                console.log('onHidden');
+            },
+        });
+        -->
+    </div>
+
+    <!-- Available options -->
+    <br />
+    <a name="available-options"></a>
+    <h2>Available options</h2>
+    <hr />
+    <p>
+        Please note that all options described below are <strong>optional</strong>, but you will have a weird dialog if you don't even give it a title to display.
+        <br />
+        Most options can be set via init options or property setters.
+    </p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Option
+                </th>
+                <th>
+                    Type
+                </th>
+                <th>
+                    Default value
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>width</td>
+                <td>
+                    String or Integer
+                </td>
+                <td>
+                    500
+                </td>
+                <td>
+                    The dialog's width in pixels or percent. Examples:
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            width: '900px',
+                        });
+                    </div>
+                    <hr />
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            width: '70%',
+                        });
+                    </div>
+                    <hr />
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            width: '600',
+                        });
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>autoWidth</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    false
+                </td>
+                <td>
+                    Enables resizing the dialog when the document is resized. It applies only when the 'width' value is set in percent.
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            width: '80%',
+                            autoWidth: true,
+                        });
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>height</td>
+                <td>
+                    String or Integer
+                </td>
+                <td>
+                    280
+                </td>
+                <td>
+                    The dialog's height in pixels or percent. Examples:
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            height: '300px',
+                        });
+                    </div>
+                    <hr />
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            height: '60%',
+                        });
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>autoHeight</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    false
+                </td>
+                <td>
+                    Enables resizing the dialog when the document is resized. It applies only when the 'height' value is set in percent.
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            height: '60%',
+                            autoHeight: true,
+                        });
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>title</td>
+                <td>
+                    String
+                </td>
+                <td>
+                </td>
+                <td>
+                    The dialog's title.
+                </td>
+            </tr>
+            <tr>
+                <td>closable</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    true
+                </td>
+                <td>
+                    Show|hide the close button at the top right corner.
+                </td>
+            </tr>
+            <tr>
+                <td>spinner</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    false
+                </td>
+                <td>
+                    Show|hide the spinner icon.
+                </td>
+            </tr>
+            <tr>
+                <td>spinnerIcon</td>
+                <td>
+                    String
+                </td>
+                <td>
+                    <div class="source-code"><span class="spinner-border" role="status"></span></div>
+                </td>
+                <td>
+                    Set the spinner's icon.
+                </td>
+            </tr>
+            <tr>
+                <td>closeByBackdrop</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    true
+                </td>
+                <td>
+                    When it's true, you can close it by clicking outside the dialog.
+                </td>
+            </tr>
+            <tr>
+                <td>closeByKeyboard</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    true
+                </td>
+                <td>
+                    When it's true, you can close it by pressing the ESC key.
+                </td>
+            </tr>
+            <tr>
+                <td>html</td>
+                <td>
+                    String
+                </td>
+                <td>
+                </td>
+                <td>
+                    The dialog's content.
+                </td>
+            </tr>
+            <tr>
+                <td>cssClass</td>
+                <td>
+                    String
+                </td>
+                <td>
+                </td>
+                <td>
+                    Additional css classes that will be added to your dialog.
+                </td>
+            </tr>
+            <tr>
+                <td>buttons</td>
+                <td>
+                    Array
+                </td>
+                <td>
+                </td>
+                <td>
+                    Example:
+                    <div class="source-code runnable">
+                        SimpleBsDialog.show({
+                            buttons: [{
+                                    id: 'btn-ok',
+                                    label: 'OK',
+                                    cssClass: 'btn-primary',
+                                    action: function(dialogRef) {
+                                        dialogRef.close();
+                                    },
+                                },
+                            ],
+                        });
+                    </div>
+                    <strong>id</strong>: optional, otherwise a random id will be generated.<br />
+                    <strong>label</strong>: optional, the button's title.<br />
+                    <strong>cssClass</strong>: optional, additional css class to be added to the button.<br />
+                    <strong>action</strong>: optional, if provided, the callback will be invoked after the button is clicked, and the dialog instance will be passed to the callback function.<br />
+                </td>
+            </tr>
+            <tr>
+                <td>onShow</td>
+                <td>
+                    function
+                </td>
+                <td>
+                </td>
+                <td>
+                    If provided, it will be invoked when the dialog is popping up.
+                </td>
+            </tr>
+            <tr>
+                <td>onShown</td>
+                <td>
+                    function
+                </td>
+                <td>
+                </td>
+                <td>
+                    If provided, it will be invoked when the dialog is popped up.
+                </td>
+            </tr>
+            <tr>
+                <td>onHide</td>
+                <td>
+                    function
+                </td>
+                <td>
+                </td>
+                <td>
+                    If provided, it will be invoked when the dialog is popping down.
+                </td>
+            </tr>
+            <tr>
+                <td>onHidden</td>
+                <td>
+                    function
+                </td>
+                <td>
+                </td>
+                <td>
+                    If provided, it will be invoked when the dialog is popped down.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <!-- Available methods -->
+    <br />
+    <a name="available-methods"></a>
+    <h2>Available methods</h2>
+    <hr />
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Method
+                </th>
+                <th>
+                    Description
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>open()</td>
+                <td>Opens the dialog. Usage: dialogInstance.open().</td>
+            </tr>
+            <tr>
+                <td>close()</td>
+                <td>Closes the dialog. Usage: dialogInstance.close().</td>
+            </tr>
+            <tr>
+                <td>get(option)</td>
+                <td>
+                    Getter for options. You can get the following options:<br />
+                    <strong>width, autoWidth, height, autoHeight, title, closable, spinner, spinnerIcon</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>set(option, value)</td>
+                <td>
+                    Setter for a given option. You can set the following options:<br />
+                    <strong>width, autoWidth, height, autoHeight, title, closable, spinner, spinnerIcon</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>set(options)</td>
+                <td>
+                    Setter for many options. You can set the following options:<br />
+                    <strong>width, autoWidth, height, autoHeight, title, closable, spinner, spinnerIcon</strong>
+                </td>
+            </tr>
+            <tr>
+                <td>getModalBody()</td>
+                <td>Returns the raw modal body.</td>
+            </tr>
+            <tr>
+                <td>getButton(id)</td>
+                <td>Returns a button by id as a jQuery object.</td>
+            </tr>
+            <tr>
+                <td>getButtons()</td>
+                <td>Returns all available buttons as jQuery objects.</td>
+            </tr>
+            <tr>
+                <td>SimpleBsDialog.show(options)</td>
+                <td>Creates a new dialog with options, opens it and returns the dialog object.</td>
+            </tr>
+            <tr>
+                <td>SimpleBsDialog.version</td>
+                <td>Returns the current SimpleBsDialog's version.</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <hr />
+    <footer class="text-center"><a href="https://github.com/wraplr/simple-bs-dialog" target="_blank">Go to the project.</a></footer>
+</div>
+
+<script type="text/javascript">
+$(function(){
+    $('.source-code').each(function(index){
+        var $section = $(this);
+        var code = $(this).html().replace('<!--', '').replace('-->', '');
+        
+        // Code preview
+        var $codePreview = $('<pre class="prettyprint lang-javascript"></pre>');
+        $codePreview.text(code);
+        $section.html($codePreview);
+        
+        // Run code
+        if($section.hasClass('runnable')){
+            var $button = $('<button class="btn btn-primary">Run the code</button>');
+            $button.on('click', {code: code}, function(event){
+                eval(event.data.code);
+            });
+            $button.insertAfter($section);
+            $('<div class="clearfix" style="margin-bottom: 10px;"></div>').insertAfter($button);
+        }
+    });
+});
+</script>
+</body>
+</html>
