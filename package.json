@@ -1,0 +1,26 @@
+{
+  "name": "@wraplr/simple-bs-dialog",
+  "version": "1.0.1",
+  "description": "Make use of Bootstrap's 4 Modal in a more friendly way",
+  "main": "src/js/simple-bs-dialog.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wraplr/simple-bs-dialog.git"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1"
+  }, 
+  "keywords": [
+    "bootstrap",
+    "simple",
+    "dialog",
+    "modal",
+    "wraplr"
+  ],
+  "author": "wraplr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wraplr/simple-bs-dialog/issues"
+  }
+}
