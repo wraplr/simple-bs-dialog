@@ -9,7 +9,6 @@
 
 .simple-bs-dialog .modal-spinner {
   background: white;
-  z-index: 1;
   position: absolute;
   top: 50%;
   left: 50%;
