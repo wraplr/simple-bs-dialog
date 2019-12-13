@@ -192,6 +192,11 @@
             // remove dialog's div
             $('#' + dialog.options.id).remove();
 
+            // be sure to not to remove modal-open class from body, until all the dialogs are closed
+            if ($('.simple-bs-dialog.modal').length && !$(document.body).hasClass('modal-open')) {
+                $(document.body).addClass('modal-open');
+            }
+
             // onHidden event
             dialog.options.onHidden(dialog);
         }).modal({
@@ -342,5 +347,5 @@
     }
 
     // current version
-    SimpleBsDialog.version = '1.0.2';
+    SimpleBsDialog.version = '1.0.3';
 }(window, jQuery));
