@@ -15,6 +15,7 @@
             spinnerIcon: '<span class="spinner-border" role="status"></span>',
             closeByBackdrop: true,
             closeByKeyboard: true,
+            putFocus: true,
             html: '',
             cssClass: '',
             buttons: [],
@@ -22,7 +23,11 @@
             onShown: function(dialogRef){},
             onHide: function(dialogRef){},
             onHidden: function(dialogRef){},
+            onHidePrevented: function(dialogRef){},
         }, options);
+
+        // reference to bootstrap modal
+        this.bsModal = null;
     };
 
     // fix multiple modals overlay
@@ -143,7 +148,7 @@
         var dialog = this;
 
         // bootstrap dialog
-        $('body').append('<div class="simple-bs-dialog modal fade' + parseCssClass(dialog.options.cssClass) + '" id="' + dialog.options.id + '" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">' + dialog.options.title + '</h5><button type="button" class="close' + (dialog.options.closable ? '' : ' d-none') + '" data-dismiss="modal">&times;</button></div><div class="modal-html"><div class="modal-body">' + dialog.options.html + '</div><div class="modal-spinner' + (dialog.options.spinner ? '' : ' d-none') + '">' + dialog.options.spinnerIcon + '</div></div>' + (dialog.options.buttons.length > 0 ? '<div class="modal-footer"></div>' : '') + '</div></div></div>');
+        $('body').append('<div class="simple-bs-dialog modal fade' + parseCssClass(dialog.options.cssClass) + '" id="' + dialog.options.id + '" tabindex="-1"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><h5 class="modal-title">' + dialog.options.title + '</h5>' + (dialog.options.closable ? '<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>' : '') + '</div><div class="modal-html"><div class="modal-body">' + dialog.options.html + '</div><div class="modal-spinner' + (dialog.options.spinner ? '' : ' d-none') + '">' + dialog.options.spinnerIcon + '</div></div>' + (dialog.options.buttons.length > 0 ? '<div class="modal-footer"></div>' : '') + '</div></div></div>');
 
         // add buttons
         $.each(dialog.options.buttons, function(index, options) {
@@ -162,8 +167,15 @@
             $('#' + dialog.options.id).find('.modal-footer').append(button);
         });
 
-        // destroy dom element
-        $('#' + dialog.options.id).on('show.bs.modal', function() {
+        // create bootstrap modal
+        this.bsModal = new bootstrap.Modal($('#' + dialog.options.id), {
+            backdrop: dialog.options.closeByBackdrop,
+            keyboard: dialog.options.closeByKeyboard,
+            focus: dialog.options.putFocus,
+        });
+
+        // add event listeners
+        $('#' + dialog.options.id).on('show.bs.modal', function(event) {
             // initial width
             setWidth({
                 data: dialog,
@@ -199,10 +211,13 @@
 
             // onHidden event
             dialog.options.onHidden(dialog);
-        }).modal({
-            'backdrop': dialog.options.closeByBackdrop,
-            'keyboard': dialog.options.closeByKeyboard,
+        }).on('hidePrevented.bs.modal', function(e) {
+            // onHidePrevented event
+            dialog.options.onHidePrevented(dialog);
         });
+
+        // show modal
+        this.bsModal.show();
 
         // return main object
         return this;
@@ -210,7 +225,10 @@
 
     SimpleBsDialog.prototype.close = function()
     {
-        $('#' + this.options.id).modal('hide');
+        // hide it
+        if (this.bsModal) {
+            this.bsModal.hide();
+        }
 
         // return main object
         return this;
@@ -347,5 +365,5 @@
     }
 
     // current version
-    SimpleBsDialog.version = '1.0.3';
+    SimpleBsDialog.version = '2.0.0';
 }(window, jQuery));

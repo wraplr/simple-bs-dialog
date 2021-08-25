@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 <link href="../src/css/simple-bs-dialog.css" rel="stylesheet" type="text/css" />
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
 <script src="../src/js/simple-bs-dialog.js"></script>
 <meta charset="utf-8" />
@@ -17,7 +17,7 @@
 </head>
 <body style="padding-bottom: 100px;">
 <div class="container">
-    <h2>Make use of Bootstrap's 4 Modal in a more friendly way.</h2>
+    <h2>Make use of Bootstrap's 5 Modal in a more friendly way.</h2>
     <hr />
     
     <h3>Full example</h3>
@@ -30,7 +30,7 @@
             autoWidth: false,
             height: '30%',
             autoHeight: true,
-            title: 'Simple Bootstrap 4 Dialog (v' + SimpleBsDialog.version + ')',
+            title: 'Simple Bootstrap 5 Dialog (v' + SimpleBsDialog.version + ')',
             closable: true,
             spinner: true,
             spinnerIcon: '<span class="spinner-border text-primary" role="status"></span>',
@@ -77,6 +77,9 @@
             },
             onHidden: function(dialogRef) {
                 console.log('onHidden');
+            },
+            onHidePrevented: function(dialogRef) {
+                console.log('onHidePrevented');
             },
         });
         -->
@@ -248,13 +251,13 @@
             <tr>
                 <td>closeByBackdrop</td>
                 <td>
-                    Boolean
+                    Boolean or the string 'static'
                 </td>
                 <td>
                     true
                 </td>
                 <td>
-                    When it's true, you can close it by clicking outside the dialog.
+                    When it's true, you can close it by clicking outside the dialog. Alternatively, specify 'static' for a backdrop which doesn't close the modal on click.
                 </td>
             </tr>
             <tr>
@@ -267,6 +270,18 @@
                 </td>
                 <td>
                     When it's true, you can close it by pressing the ESC key.
+                </td>
+            </tr>
+            <tr>
+                <td>putFocus</td>
+                <td>
+                    Boolean
+                </td>
+                <td>
+                    true
+                </td>
+                <td>
+                    Puts the focus on the modal when initialized.
                 </td>
             </tr>
             <tr>
@@ -361,6 +376,17 @@
                 </td>
                 <td>
                     If provided, it will be invoked when the dialog is popped down.
+                </td>
+            </tr>
+            <tr>
+                <td>onHidePrevented</td>
+                <td>
+                    function
+                </td>
+                <td>
+                </td>
+                <td>
+                    This event is fired when the modal is shown, its closeByBackdrop is 'static' and a click outside the modal or an escape key press is performed with the closeByKeyboard option set to false. Note: available with Bootstrap 5 only.
                 </td>
             </tr>
         </tbody>

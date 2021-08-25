@@ -3,6 +3,9 @@
   min-height: 200px;
 }
 
+.simple-bs-dialog .modal-html {
+}
+
 .simple-bs-dialog .modal-body {
   min-height: 80px;
 }
