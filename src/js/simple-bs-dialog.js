@@ -159,7 +159,7 @@
                 action: function(dialogRef){},
             }, options);
 
-            var button = $('<button type="button" class="btn btn-default' + (opts.cssClass.length > 0 ? ' ' : '') + opts.cssClass + '" id="' + opts.id + '">' + opts.label + '</button>');
+            var button = $('<button type="button" class="btn' + (opts.cssClass.length > 0 ? ' ' : '') + opts.cssClass + '" id="' + opts.id + '">' + opts.label + '</button>');
             button.on('click', function(e) {
                 opts.action(dialog);
             });
@@ -365,5 +365,5 @@
     }
 
     // current version
-    SimpleBsDialog.version = '2.0.0';
+    SimpleBsDialog.version = '2.0.1';
 }(window, jQuery));

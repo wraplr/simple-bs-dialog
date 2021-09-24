@@ -13,7 +13,7 @@ npm i @wraplr/simple-bs-dialog
 ## For Bootstrap 4 install and older version
 
 ```
-npm i @wraplr/simple-bs-dialog@^1.0.0
+npm i @wraplr/simple-bs-dialog@^1
 ```
 
 ## License
