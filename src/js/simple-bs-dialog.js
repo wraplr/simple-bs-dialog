@@ -365,5 +365,5 @@
     }
 
     // current version
-    SimpleBsDialog.version = '2.0.1';
+    SimpleBsDialog.version = '2.0.2';
 }(window, jQuery));
