@@ -1,6 +1,6 @@
 {
   "name": "@wraplr/simple-bs-dialog",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Make use of Bootstrap's 5 Modal in a more friendly way",
   "main": "src/js/simple-bs-dialog.js",
   "repository": {
