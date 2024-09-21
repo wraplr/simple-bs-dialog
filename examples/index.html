@@ -39,27 +39,19 @@
             html: '',
             cssClass: 'login-dialog',
             buttons: [{
-                    id: 'btn-ok',
-                    label: 'OK',
+                    id: 'btn-close',
+                    label: 'Close',
                     cssClass: 'btn-primary',
+                    disabled: true,
                     action: function(dialogRef) {
-                        console.log('OK button pressed!');
-                        dialogRef.close();
-                    },
-                }, {
-                    id: 'btn-cancel',
-                    label: 'Cancel',
-                    cssClass: 'btn-warning',
-                    action: function(dialogRef) {
-                        console.log('Cancel button pressed!');
+                        console.log('Close button pressed!');
+
                         dialogRef.close();
                     },
                 },
             ],
             onShow: function(dialogRef) {
                 console.log('onShow');
-
-                dialogRef.getButtons().prop('disabled', true);
             },
             onShown: function(dialogRef) {
                 console.log('onShown');
@@ -80,6 +72,50 @@
             },
             onHidePrevented: function(dialogRef) {
                 console.log('onHidePrevented');
+            },
+        });
+    </pre>
+
+    <h3 class="mt-5">Multi modals</h3>
+    <p>Opening multiple modals.</p>
+
+    <pre class="prettyprint lang-javascript runnable">
+
+        SimpleBsDialog.show({
+            title: 'Main window',
+            closeByKeyboard: false,
+            html: '&lt;button type="button" class="btn btn-info" id="show-new-window"&gt;Open a new window&lt;/button&gt;',
+            buttons: [{
+                    id: 'btn-close',
+                    label: 'Close',
+                    cssClass: 'btn-primary',
+                    action: function(dialogRef) {
+                        dialogRef.close();
+                    },
+                },
+            ],
+            onShown: function(dialogRef) {
+                dialogRef.getModalBody().find('button#show-new-window').on('click', function() {
+                    SimpleBsDialog.show({
+                        width: '350px',
+                        height: 'auto',
+                        title: 'New window',
+                        closable: false,
+                        spinner: false,
+                        closeByBackdrop: true,
+                        closeByKeyboard: false,
+                        html: 'This is a new window on top of the main window.',
+                        buttons: [{
+                                id: 'btn-close',
+                                label: 'Close',
+                                cssClass: 'btn-primary',
+                                action: function(dialogRefNew) {
+                                    dialogRefNew.close();
+                                },
+                            },
+                        ],
+                    });
+                })
             },
         });
     </pre>
@@ -120,26 +156,26 @@
                 </td>
                 <td>
                     The dialog's width in pixels or percent. Examples:
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                width: '900px',
-            });
-        </pre>
-        <hr />
-        <pre class="prettyprint lang-javascript runnable">
+                        SimpleBsDialog.show({
+                            width: '900px',
+                        });
+                    </pre>
+                    <hr />
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                width: '70%',
-            });
-        </pre>
-        <hr />
-        <pre class="prettyprint lang-javascript runnable">
+                        SimpleBsDialog.show({
+                            width: '70%',
+                        });
+                    </pre>
+                    <hr />
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                width: '600',
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            width: '600',
+                        });
+                    </pre>
                 </td>
             </tr>
             <tr>
@@ -152,13 +188,13 @@
                 </td>
                 <td>
                     Enables resizing the dialog when the document is resized. It applies only when the 'width' value is set in percent.
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                width: '80%',
-                autoWidth: true,
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            width: '80%',
+                            autoWidth: true,
+                        });
+                    </pre>
                 </td>
             </tr>
             <tr>
@@ -171,19 +207,19 @@
                 </td>
                 <td>
                     The dialog's height in pixels or percent. Examples:
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                height: '300px',
-            });
-        </pre>
-        <hr />
-        <pre class="prettyprint lang-javascript runnable">
+                        SimpleBsDialog.show({
+                            height: '300px',
+                        });
+                    </pre>
+                    <hr />
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                height: '60%',
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            height: '60%',
+                        });
+                    </pre>
                 </td>
             </tr>
             <tr>
@@ -196,13 +232,13 @@
                 </td>
                 <td>
                     Enables resizing the dialog when the document is resized. It applies only when the 'height' value is set in percent.
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                height: '60%',
-                autoHeight: true,
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            height: '60%',
+                            autoHeight: true,
+                        });
+                    </pre>
                 </td>
             </tr>
             <tr>
@@ -260,25 +296,25 @@
                 </td>
                 <td>
                     When it's true, you can close it by clicking outside the dialog. Alternatively, specify 'static' for a backdrop which doesn't close the modal on click.
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                width: '900px',
-                closeByBackdrop: 'static',
-                closeByKeyboard: false,
-                closable: false,
-                buttons: [{
-                        id: 'btn-cancel',
-                        label: 'Cancel',
-                        cssClass: 'btn-warning',
-                        action: function(dialogRef) {
-                            console.log('Cancel button pressed!');
-                            dialogRef.close();
-                        },
-                    },
-                ],
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            width: '900px',
+                            closeByBackdrop: 'static',
+                            closeByKeyboard: false,
+                            closable: false,
+                            buttons: [{
+                                    id: 'btn-cancel',
+                                    label: 'Cancel',
+                                    cssClass: 'btn-warning',
+                                    action: function(dialogRef) {
+                                        console.log('Cancel button pressed!');
+                                        dialogRef.close();
+                                    },
+                                },
+                            ],
+                        });
+                    </pre>
                 </td>
             </tr>
             <tr>
@@ -336,24 +372,30 @@
                 </td>
                 <td>
                     Example:
-        <pre class="prettyprint lang-javascript runnable">
+                    <pre class="prettyprint lang-javascript runnable">
 
-            SimpleBsDialog.show({
-                buttons: [{
-                        id: 'btn-ok',
-                        label: 'OK',
-                        cssClass: 'btn-primary',
-                        action: function(dialogRef) {
-                            dialogRef.close();
-                        },
-                    },
-                ],
-            });
-        </pre>
+                        SimpleBsDialog.show({
+                            buttons: [{
+                                    id: 'btn-disabled',
+                                    label: 'Disabled',
+                                    cssClass: 'btn-secondary',
+                                    disabled: true,
+                                }, {
+                                    id: 'btn-ok',
+                                    label: 'OK',
+                                    cssClass: 'btn-primary',
+                                    action: function(dialogRef) {
+                                        dialogRef.close();
+                                    },
+                                },
+                            ],
+                        });
+                    </pre>
                     <div class="mt-3">
                         <strong>id</strong>: optional, otherwise a random id will be generated.<br />
                         <strong>label</strong>: optional, the button's title.<br />
                         <strong>cssClass</strong>: optional, additional css class to be added to the button.<br />
+                        <strong>disabled</strong>: optional, if true, the button will be disabled by default.<br />
                         <strong>action</strong>: optional, if provided, the callback will be invoked after the button is clicked, and the dialog instance will be passed to the callback function.<br />
                     </div>
                 </td>
