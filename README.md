@@ -2,7 +2,7 @@
 
 Make use of Bootstrap's 5 Modal in a more friendly way.
 
-See live examples here: <a href="https://wraplr.com/simple-bs-dialog/">https://wraplr.com/simple-bs-dialog/</a>
+See live examples here: <a href="https://wraplr.top/simple-bs-dialog/">https://wraplr.top/simple-bs-dialog/</a>
 
 ## Install using npm
 
