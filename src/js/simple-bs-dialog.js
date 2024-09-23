@@ -30,40 +30,6 @@
         this.bsModal = null;
     };
 
-    // fix multiple modals overlay
-    new MutationObserver(mutationList => mutationList.filter(mutation => mutation.type === 'childList').forEach(mutation => {
-        mutation.addedNodes.forEach(function(e) {
-            var target = $(e), highestZIndex = 0;
-
-            // calculate max z-index
-            if (target.is('div') && (target.hasClass('modal-backdrop') || (target.hasClass('simple-bs-dialog') && target.hasClass('modal')))) {
-                $('*').each(function() {
-                    if ($.isNumeric($(this).css('z-index'))) {
-                        var currentZIndex = parseInt($(this).css('z-index'), 10);
-         
-                        // skip crazy big z-index values (currentZIndex <= 0x7FFFFFFF - 1024, 1024 - enough for 512 overlay windows in the worst case)
-                        if (!($(this).hasClass('modal-backdrop') || ($(this).hasClass('simple-bs-dialog') && $(this).hasClass('modal'))) && currentZIndex <= 0x7FFFFFFF - 1024 && currentZIndex > highestZIndex) {
-                            highestZIndex = currentZIndex;
-                        }
-                    }
-                });
-            }
-
-            // set modal-backdrop's z-index
-            if (target.is('div') && target.hasClass('modal-backdrop')) {
-                target.css('z-index', highestZIndex + 2 * $('.modal-backdrop').length - 1);
-            }
-
-            // set modal's z-index
-            if (target.is('div') && target.hasClass('simple-bs-dialog') && target.hasClass('modal')) {
-                target.css('z-index', highestZIndex + 2 * $('.simple-bs-dialog.modal').length);
-            }
-        });
-    })).observe(document, {
-        childList: true,
-        subtree: true,
-    });
-
     // private methods
     function newGuid()
     {
@@ -371,5 +337,5 @@
     }
 
     // current version
-    SimpleBsDialog.version = '2.0.3';
+    SimpleBsDialog.version = '2.0.4';
 }(window, jQuery));
